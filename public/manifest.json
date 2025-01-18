@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Sapiens",
+  "version": "1.0",
+  "description": "Sapiens",
+  "host_permissions": [
+    "https://png2jpg.com/*",
+    "https://*.sapien.io/*",
+    "https://pulse.walletconnect.com/*",
+    "https://auth.privy.io/*",
+    "https://explorer-api.walletconnect.com/*",
+    "https://api2.amplitude.com/*",
+    "*://*.sapien.io/*",
+    "https://app.sapien.io/*"
+  ],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "cookies",
+    "webRequest",
+    "webRequestBlocking",
+    "*://*.sapien.io/*",
+    "https://app.sapien.io/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: blob: filesystem: chrome-extension:; media-src 'self' blob: filesystem: chrome-extension:; connect-src * 'self' https://*.sapien.io/* https://app.sapien.io/* https://pulse.walletconnect.com https://auth.privy.io https://explorer-api.walletconnect.com https://api2.amplitude.com https://png2jpg.com;"
+  },
+
+  "icons": {
+    "16": "icons/logo192.png",    
+    "32": "icons/logo192.png",
+    "48": "icons/logo192.png",
+    "128": "icons/logo192.png"
+  },
+
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/logo192.png",
+      "32": "icons/logo192.png",
+      "48": "icons/logo192.png",
+      "128": "icons/logo192.png"
+    }
+  }
+}
