@@ -11,21 +11,21 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      <div className="hero-content">
-        <h1>
-          <span>Play.</span> <span>Earn.</span>
-          <br />
-          <span className="highlight">Train AI.</span>
-        </h1>
-        <p>
-          Join thousands of players contributing to AI through fun,
-          <br />
-          rewarding tasks—right from your phone!
-        </p>
-        <button className="play-button" onClick={handlePlayNow}>Play Now!</button>
+      <div className="video-container">
+        <video autoPlay muted loop playsInline className="background-video">
+          <source src="https://game.sapien.io/sapien-hero-extended-1080.mp4" type="video/mp4" />
+        </video>
       </div>
-      <div className="hero-image">
-        <div className="sphere-animation"></div>
+
+      <div className="content">
+        <div className="hero-text">
+          <h1>Play. Earn.<br/>Train AI.</h1>
+          <p>Join thousands of players contributing to AI through fun, rewarding tasks—right from your phone!</p>
+        </div>
+
+        <button className="cta-button" onClick={handlePlayNow}>
+          Play Now!
+        </button>
       </div>
     </div>
   );
