@@ -23,19 +23,22 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="logo">
-          <img src={sapien_logo} alt="Sapien" />
+          <img src={sapien_logo} alt="Sapien" className="logo-image" />
         </div>
         <div className={`menu-icon ${isMenuOpen ? 'rotate' : ''}`} onClick={toggleMenu}>
-          <img src={menu_icon} alt="Menu" />
+          <img src={menu_icon} alt="Menu" className="menu-icon-image" />
         </div>
       </nav>
       {(isMenuOpen || isAnimating) && (
-        <div className={`menu-popup ${isMenuOpen ? 'open' : 'close'}`}>
+        <div className={`menu-popup ${isAnimating && !isMenuOpen ? 'closing' : ''}`}>
+          <div className="back-button" onClick={toggleMenu}>
+            <span>←</span>
+          </div>
           <div className="menu-links">
-            <a href="/about">About Us</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="/faq">F.A.Q.</a>
-            <a href="/blog" className="blog-link">/blog</a>
+            <a href="/about" className="menu-link">About Us</a>
+            <a href="/how-it-works" className="menu-link">How It Works</a>
+            <a href="/faq" className="menu-link">F.A.Q.</a>
+            <a href="/blog" className="menu-link blog-link">/blog</a>
           </div>
         </div>
       )}
