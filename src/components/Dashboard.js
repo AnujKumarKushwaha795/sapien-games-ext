@@ -171,7 +171,6 @@ const Dashboard = () => {
     <div className="dashboard">
       <header>
         <button className="menu-button" onClick={handleMenuClick}>☰</button>
-        <h1>Dashboard</h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div className="balance">
             <span>$0.16 USDC</span>
