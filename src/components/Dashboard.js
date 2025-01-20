@@ -5,6 +5,7 @@ import { DashboardAPI } from '../services/api';
 import '../styles/Dashboard.css';
 import SignupOverlay from './SignupOverlay';
 import { VehiclePosAPI } from '../services/vehicle_pos_api';
+import menu_icon from '../assets/menu_icon.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -169,11 +170,16 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <nav className="navbar">
-        <div className="navbar-left">
-          <button className="menu-button" onClick={handleMenuClick}>☰</button>
+      <header className="dashboard-header">
+        <div className="dashboard-header-left">
+          <img 
+            src={menu_icon} 
+            alt="Menu" 
+            className="dashboard-menu-icon"
+            onClick={handleMenuClick}
+          />
         </div>
-        <div className="navbar-right">
+        <div className="dashboard-header-right">
           <div className="balance">
             <span>$0.16 USDC</span>
           </div>
@@ -194,7 +200,7 @@ const Dashboard = () => {
             Upload
           </button>
         </div>
-      </nav>
+      </header>
 
       <div className="tasks-grid">
         <div className="task-card active" onClick={() => handleTaskClick('vehicle-positioning')}>
