@@ -26,11 +26,11 @@ const Hero = () => {
 
       <div className="content">
         <div className="hero-text">
-          <h1>Play. Earn.<br/>Train AI.</h1>
+          <h1 className="gradient-text">Play. Earn.<br/>Train AI.</h1>
           <p>Join thousands of players contributing to AI through fun, rewarding tasks—right from your phone!</p>
         </div>
 
-        <button className="cta-button" onClick={handlePlayNow}>
+        <button className="cta-button orange-button" onClick={handlePlayNow}>
           Play Now!
         </button>
       </div>

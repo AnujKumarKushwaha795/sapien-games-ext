@@ -169,9 +169,11 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <header>
-        <button className="menu-button" onClick={handleMenuClick}>☰</button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <nav className="navbar">
+        <div className="navbar-left">
+          <button className="menu-button" onClick={handleMenuClick}>☰</button>
+        </div>
+        <div className="navbar-right">
           <div className="balance">
             <span>$0.16 USDC</span>
           </div>
@@ -186,73 +188,50 @@ const Dashboard = () => {
           {/* Upload button */}
           <button 
             onClick={handleFileSelect}
-            style={{
-              padding: '8px 15px',
-              backgroundColor: '#40E0FF',
-              border: 'none',
-              borderRadius: '20px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '5px',
-              color: '#020B2C',
-              fontSize: '14px',
-              fontWeight: '500'
-            }}
+            className="upload-button"
           >
-            <span style={{ fontSize: '16px' }}>📤</span> Upload
+            <span>📤</span>
+            Upload
           </button>
         </div>
-      </header>
+      </nav>
 
       <div className="tasks-grid">
         <div className="task-card active" onClick={() => handleTaskClick('vehicle-positioning')}>
-          <div className="task-icon">📄</div>
+          <div className="task-icon">🚗</div>
           <h2>Vehicle Positioning</h2>
-          <div className="task-reward">$0.02 USDC</div>
+          <div className="task-reward">
+            <span>💰</span>
+            $0.02 USDC
+          </div>
         </div>
 
         <div className="task-card" onClick={() => handleTaskClick('tag-a-dog')}>
-          <div className="task-icon">✓</div>
+          <div className="task-icon">🐕</div>
           <h2>Tag-a-dog</h2>
-          <div className="task-reward">$0.02 USDC</div>
+          <div className="task-reward">
+            <span>💰</span>
+            $0.02 USDC
+          </div>
         </div>
 
         <div className="task-card" onClick={() => handleTaskClick('textography')}>
-          <div className="task-icon">👑</div>
+          <div className="task-icon">📝</div>
           <h2>Textography</h2>
-          <div className="task-reward">$0.02 USDC</div>
+          <div className="task-reward">
+            <span>💰</span>
+            $0.02 USDC
+          </div>
         </div>
 
         <div className="task-card" onClick={() => handleTaskClick('drivesight')}>
-          <div className="task-icon">✓</div>
+          <div className="task-icon">🚦</div>
           <h2>Drivesight</h2>
-          <div className="task-reward">$0.02 USDC</div>
+          <div className="task-reward">
+            <span>💰</span>
+            $0.02 USDC
+          </div>
         </div>
-      </div>
-
-      {/* Add the pnj2jpg.com link */}
-      <div style={{ 
-        textAlign: 'center', 
-        marginTop: '20px',
-        marginBottom: '20px' 
-      }}>
-        <a 
-          href="https://pnj2jpg.com" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = 'https://pnj2jpg.com';
-          }}
-          style={{ 
-            cursor: 'pointer', 
-            textDecoration: 'underline',
-            color: '#40E0FF'
-          }}
-        >
-          pnj2jpg.com
-        </a>
       </div>
     </div>
   );

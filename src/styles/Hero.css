@@ -6,6 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #1a1a1a;
+  color: #ffffff;
 }
 
 .hero-content {
@@ -68,6 +70,16 @@ p {
   z-index: 0;
 }
 
+.video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.85); /* Dark overlay for video */
+}
+
 .background-video {
   width: 100%;
   height: 100%;
@@ -98,7 +110,7 @@ p {
 .hero-text h1 {
   font-size: 4rem;
   margin-bottom: 1.5rem;
-  color: white;
+  color: #ffffff;
   line-height: 1.2;
 }
 
@@ -106,7 +118,7 @@ p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
   opacity: 0.9;
-  color: white;
+  color: #e0e0e0;
 }
 
 .cta-button {
@@ -123,6 +135,28 @@ p {
 
 .cta-button:hover {
   background-color: #0095d6;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #ff3e3e, #ff7033);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.orange-button {
+  background: linear-gradient(45deg, #ff7033, #ffa041);
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.orange-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 112, 51, 0.4);
 }
 
 @media (max-width: 768px) {
