@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Hero.css';
-import backgroundVideo from '../assets/sapien-hero-extended-1080.mp4';
+// import backgroundVideo from '../assets/sapien-hero-extended-1080.mp4';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Hero = () => {
           playsInline 
           className="background-video"
         >
-          <source src={backgroundVideo} type="video/mp4" />
+          {/* <source src={backgroundVideo} type="video/mp4" /> */}
         </video>
       </div>
 

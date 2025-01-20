@@ -17,15 +17,15 @@ const WalletConnect = () => {
       }
 
       // Check for WootzApp wallet
-      if (typeof window.wootzapp !== 'undefined') {
+      if (typeof window.ethereum !== 'undefined') {
         try {
-          const accounts = await window.wootzapp.request({
+          const accounts = await window.ethereum.request({
             method: 'eth_accounts',
             params: []
           });
 
           if (accounts && accounts.length > 0) {
-            const chainId = await window.wootzapp.request({
+            const chainId = await window.ethereum.request({
               method: 'eth_chainId'
             });
 
@@ -54,17 +54,17 @@ const WalletConnect = () => {
 
     try {
       if (walletType === 'wootzapp') {
-        if (typeof window.wootzapp === 'undefined') {
+        if (typeof window.ethereum === 'undefined') {
           throw new Error('WootzApp wallet is not installed!');
         }
 
-        const accounts = await window.wootzapp.request({
+        const accounts = await window.ethereum.request({
           method: 'eth_requestAccounts',
           params: []
         });
 
         if (accounts && accounts.length > 0) {
-          const chainId = await window.wootzapp.request({
+          const chainId = await window.ethereum.request({
             method: 'eth_chainId'
           });
 

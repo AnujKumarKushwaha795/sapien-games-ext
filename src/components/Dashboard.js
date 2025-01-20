@@ -6,6 +6,7 @@ import '../styles/Dashboard.css';
 import SignupOverlay from './SignupOverlay';
 import { VehiclePosAPI } from '../services/vehicle_pos_api';
 import menu_icon from '../assets/menu_icon.png';
+import Menu from './Menu';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const [dashboardData, setDashboardData] = useState(null);
   const [showSignup, setShowSignup] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -124,7 +126,11 @@ const Dashboard = () => {
   
 
   const handleMenuClick = () => {
-    navigate('/menu');
+    setIsMenuOpen(true);
+  };
+
+  const handleCloseMenu = () => {
+    setIsMenuOpen(false);
   };
 
   const handleFileSelect = () => {
@@ -175,7 +181,7 @@ const Dashboard = () => {
           <img 
             src={menu_icon} 
             alt="Menu" 
-            className="dashboard-menu-icon"
+            className={`dashboard-menu-icon ${isMenuOpen ? 'rotate' : ''}`}
             onClick={handleMenuClick}
           />
         </div>
@@ -201,6 +207,8 @@ const Dashboard = () => {
           </button>
         </div>
       </header>
+
+      <Menu isOpen={isMenuOpen} onClose={handleCloseMenu} />
 
       <div className="tasks-grid">
         <div className="task-card active" onClick={() => handleTaskClick('vehicle-positioning')}>
