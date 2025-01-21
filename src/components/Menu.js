@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Menu.css";
-import ConnectWallet from '../privy/ConnectWallet'; 
+import ConnectWalletButton from "../providers/ConnectWalletButton";
 
 const Menu = ({ isOpen, onClose }) => {
   return (
@@ -20,7 +20,7 @@ const Menu = ({ isOpen, onClose }) => {
           <button className="menu-item active">FAQ</button>
           <button className="menu-item">Tagger Profile</button>
           <button className="menu-item">Points</button>
-            <ConnectWallet />
+          <ConnectWalletButton />
         </div>
       </div>
     </>

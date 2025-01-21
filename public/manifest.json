@@ -17,9 +17,7 @@
     "activeTab",
     "storage",
     "cookies",
-    "webRequest",
-    "webRequestBlocking",
-    "*://*.sapien.io/*",
+    "https://*.sapien.io/*",
     "https://app.sapien.io/*"
   ],
   "content_security_policy": {

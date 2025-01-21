@@ -3,8 +3,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DashboardAPI } from '../services/api';
 import '../styles/Dashboard.css';
-import SignupOverlay from './SignupOverlay';
-import { VehiclePosAPI } from '../services/vehicle_pos_api';
 import menu_icon from '../assets/menu_icon.png';
 import Menu from './Menu';
 
