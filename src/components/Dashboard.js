@@ -61,18 +61,22 @@ const Dashboard = () => {
   const handleTaskClick = async (taskType) => { 
     if (taskType === 'vehicle-positioning') {
       try {
+          // TODO: Remove this once we have the actual API call
+          
+
+
         // First call sapienGame API
-        const gameResponse = await new Promise((resolve, reject) => {
-          chrome.wootz.sapienGame((result) => {
-            console.log('Raw game response:', result);
-            if (chrome.runtime.lastError) {
-              reject(chrome.runtime.lastError);
-            } else {
-              resolve(result);
-            }
-          });
-        });
-        console.log('Anuj: Response from sapienGame:', gameResponse);
+        // const gameResponse = await new Promise((resolve, reject) => {
+        //   chrome.wootz.sapienGame((result) => {
+        //     console.log('Raw game response:', result);
+        //     if (chrome.runtime.lastError) {
+        //       reject(chrome.runtime.lastError);
+        //     } else {
+        //       resolve(result);
+        //     }
+        //   });
+        // });
+        // console.log('Anuj: Response from sapienGame:', gameResponse);
 
         // Then call sapienMonitoring API
         const monitoringResponse = await new Promise((resolve, reject) => {
