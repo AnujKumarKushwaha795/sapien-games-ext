@@ -3,16 +3,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DashboardAPI } from '../services/api';
 import '../styles/Dashboard.css';
-import menu_icon from '../assets/menu_icon.png';
-import Menu from './Menu';
+import wootzapp_icon from '../assets/wootzapp.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [dashboardData, setDashboardData] = useState(null);
-  const [showSignup, setShowSignup] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -189,15 +186,6 @@ const Dashboard = () => {
     }
   };
   
-
-  const handleMenuClick = () => {
-    setIsMenuOpen(true);
-  };
-
-  const handleCloseMenu = () => {
-    setIsMenuOpen(false);
-  };
-
   const handleFileSelect = () => {
     fileInputRef.current?.click();
   };
@@ -243,12 +231,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <header className="dashboard-header">
         <div className="dashboard-header-left">
-          <img 
-            src={menu_icon} 
-            alt="Menu" 
-            className={`dashboard-menu-icon ${isMenuOpen ? 'rotate' : ''}`}
-            onClick={handleMenuClick}
-          />
+          {/* Removed menu icon */}
         </div>
         <div className="dashboard-header-right">
           <div className="balance">
@@ -262,18 +245,16 @@ const Dashboard = () => {
             onChange={handleFileChange}
             style={{ display: 'none' }}
           />
-          {/* Upload button */}
+          {/* Connect to Wallet button */}
           <button 
             onClick={handleFileSelect}
-            className="upload-button"
+            className="connect-wallet-button"
           >
-            <span>📤</span>
-            Upload
+            <img src={wootzapp_icon} alt="Connect to Wallet" className="wallet-icon" />
+            Connect to Wallet
           </button>
         </div>
       </header>
-
-      <Menu isOpen={isMenuOpen} onClose={handleCloseMenu} />
 
       <div className="tasks-grid">
         <div className="task-card active" onClick={() => handleTaskClick('vehicle-positioning')}>
@@ -304,7 +285,7 @@ const Dashboard = () => {
         </div>
 
         <div className="task-card" onClick={() => handleTaskClick('drivesight')}>
-          <div className="task-icon">🚦</div>
+          <div class="task-icon">🚦</div>
           <h2>Drivesight</h2>
           <div className="task-reward">
             <span>💰</span>

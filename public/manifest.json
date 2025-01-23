@@ -21,18 +21,18 @@
     "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: blob: filesystem: chrome-extension:; media-src 'self' blob: filesystem: chrome-extension:; connect-src *;"
   },
   "icons": {
-    "16": "icons/logo192.png",
-    "32": "icons/logo192.png",
-    "48": "icons/logo192.png",
-    "128": "icons/logo192.png"
+    "16": "icons/icon.png",
+    "32": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
   },
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "icons/logo192.png",
-      "32": "icons/logo192.png",
-      "48": "icons/logo192.png",
-      "128": "icons/logo192.png"
+      "16": "icons/icon.png",
+      "32": "icons/icon.png",
+      "48": "icons/icon.png",
+      "128": "icons/icon.png"
     }
   }
 }

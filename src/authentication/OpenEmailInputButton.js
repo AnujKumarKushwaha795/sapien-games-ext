@@ -11,6 +11,7 @@ const OpenEmailInputButton = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpenEmailInput = () => {
+    console.log("Opening email input form");
     setShowEmailInput(true);
   };
 
@@ -18,7 +19,10 @@ const OpenEmailInputButton = () => {
     console.log("OTP sent to:", email);
     console.log("Transitioning to OTP input screen");
     setEmail(email);
+    console.log("Email state updated");
     setShowOtpInput(true);
+    console.log("OTP input form displayed");
+    console.log("Current state - showEmailInput:", showEmailInput, "showOtpInput:", showOtpInput);
   };
 
   const handleAuthComplete = (token) => {
@@ -87,6 +91,11 @@ const OpenEmailInputButton = () => {
     setEmail("");
   };
 
+  console.log('Current component state:');
+  console.log('showEmailInput:', showEmailInput);
+  console.log('showOtpInput:', showOtpInput);
+  console.log('email:', email);
+
   return (
     <div>
       {!isLoggedIn ? (
@@ -101,8 +110,11 @@ const OpenEmailInputButton = () => {
       {(showEmailInput || showOtpInput) && (
         <div className={`slide-up-popup ${showEmailInput || showOtpInput ? "open" : ""}`}>
           <div className="popup-content">
-            {showEmailInput && !showOtpInput && <EmailInput onOtpSent={handleOtpSent} />}
-            {showOtpInput && <OTPInput email={email} onAuthComplete={handleAuthComplete} />}
+            {showOtpInput ? (
+              <OTPInput email={email} onAuthComplete={handleAuthComplete} />
+            ) : (
+              <EmailInput onOtpSent={handleOtpSent} />
+            )}
           </div>
         </div>
       )}

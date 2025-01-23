@@ -1,5 +1,5 @@
 .dashboard {
-  background: #505050cb;
+  background: #505050c1;
   min-height: 100vh;
   padding: 20px;
   padding-top: 80px;
@@ -24,19 +24,6 @@
   align-items: center;
 }
 
-.dashboard-menu-icon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  margin: 0 20px;
-  filter: invert(1);
-  transition: transform 0.3s ease;
-}
-
-.dashboard-menu-icon:hover {
-  transform: scale(1.1);
-}
-
 .dashboard-header-right {
   display: flex;
   align-items: center;
@@ -54,7 +41,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.upload-button {
+.connect-wallet-button {
   background: linear-gradient(45deg, #ff7033, #ffa041);
   color: white;
   border: none;
@@ -70,9 +57,14 @@
   box-shadow: 0 2px 4px rgba(255, 112, 51, 0.3);
 }
 
-.upload-button:hover {
+.connect-wallet-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(255, 112, 51, 0.4);
+}
+
+.wallet-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .tasks-grid {
