@@ -70,7 +70,7 @@ const OTPInput = ({ email, onAuthComplete }) => {
   };
 
   return (
-    <div>
+    <div className="otp-input-container">
       <h4>Enter OTP</h4>
       <form onSubmit={handleSubmit}>
         <input

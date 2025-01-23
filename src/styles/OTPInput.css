@@ -1,27 +1,38 @@
-.otp-input {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+.otp-input-container {
+  text-align: center;
 }
 
-.otp-input input {
+.otp-input-container h4 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.otp-input-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.otp-input-container input[type="text"] {
   width: 80%;
-  padding: 10px;
-  text-align: center;
-  font-size: 20px;
-  border: 2px solid #007bff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #ffa041; /* Orange border */
   border-radius: 8px;
+  font-size: 18px;
+  background-color: #d3d3d3; /* Light grey background */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease;
 }
 
-.otp-input input:focus {
-  border-color: #0056b3;
+.otp-input-container input[type="text"]:focus {
+  border-color: #ff7033; /* Darker orange border on focus */
   outline: none;
 }
 
-button {
-  background-color: #007bff;
+.otp-input-container button {
+  background: linear-gradient(45deg, #ff7033, #ffa041); /* Shaded orange button */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -31,6 +42,11 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.otp-input-container button:hover {
+  background-color: #ff7033;
+}
+
+.otp-input-container p {
+  color: red;
+  margin-top: 10px;
 }
