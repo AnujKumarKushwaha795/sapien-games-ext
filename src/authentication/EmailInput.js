@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "../styles/EmailInput.css"; // Add this line to import the CSS
 
@@ -7,17 +8,23 @@ const EmailInput = ({ onOtpSent }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Initiating email verification for:", email);
     setError("");
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      console.log("Email validation failed");
       setError("Please enter a valid email address.");
       return;
     }
 
     try {
+
+      console.log("Making API call to passwordless/init");
+
       console.log("Initiating OTP send for email:", email);
       // authenticate
+
       const response = await fetch("https://auth.privy.io/api/v1/passwordless/init", {
         headers: {
           "accept": "application/json",
@@ -34,6 +41,7 @@ const EmailInput = ({ onOtpSent }) => {
       console.log("Response status:", response.status);
 
       const result = await response.json();
+
       console.log("OTP Init Result:", result);
 
       if (result.success) {

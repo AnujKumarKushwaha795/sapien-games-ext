@@ -10,12 +10,14 @@ const OTPInput = ({ email, onAuthComplete }) => {
   const handleSubmit = async (e) => {
     console.log('OTPInput handleSubmit called');
     e.preventDefault();
+    console.log("Verifying OTP for email:", email);
     setError("");
     console.log('OTPInput handleSubmit called with email:', email);
     console.log('OTPInput handleSubmit called with otp:', otp);
 
     try {
-      console.log('authenticating...');
+      console.log("Making API call to authenticate OTP");
+
       const response = await fetch("https://auth.privy.io/api/v1/passwordless/authenticate", {
         headers: {
           "accept": "application/json",
@@ -103,6 +105,7 @@ const OTPInput = ({ email, onAuthComplete }) => {
       }
     } catch (err) {
       console.error("Error in handleResendOtp:", err);
+
       setError("An error occurred. Please try again.");
     }
   };
