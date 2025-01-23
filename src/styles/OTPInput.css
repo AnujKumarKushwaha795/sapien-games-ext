@@ -50,3 +50,23 @@
   color: red;
   margin-top: 10px;
 }
+
+.resend-otp {
+  margin-top: 20px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.resend-otp-button {
+  background: none;
+  border: none;
+  color: #00b4ff;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.resend-otp-button:hover {
+  color: #0090cc;
+}

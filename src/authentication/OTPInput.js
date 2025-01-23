@@ -5,6 +5,7 @@ import "../styles/OTPInput.css"; // Add this line to import the CSS
 const OTPInput = ({ email, onAuthComplete }) => {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
+  const [resendMessage, setResendMessage] = useState("");
 
   const handleSubmit = async (e) => {
     console.log('OTPInput handleSubmit called');
@@ -69,6 +70,43 @@ const OTPInput = ({ email, onAuthComplete }) => {
     }
   };
 
+  const handleResendOtp = async () => {
+    setError("");
+    setResendMessage("");
+
+    try {
+      console.log("Resending OTP to email:", email);
+      const response = await fetch("https://auth.privy.io/api/v1/passwordless/init", {
+        headers: {
+          "accept": "application/json",
+          "content-type": "application/json",
+          "privy-app-id": "cm668wd7e0162w7562xb9xnhu",
+          "privy-ca-id": "b63f2350-b686-4f70-894a-0d8f1f870592",
+          "privy-client": "react-auth:1.98.4",
+        },
+        method: "POST",
+        body: JSON.stringify({ email }),
+      });
+
+      console.log("OTP Resend Response:", response);
+      console.log("Response status:", response.status);
+
+      const result = await response.json();
+      console.log("OTP Resend Result:", result);
+
+      if (result.success) {
+        console.log("OTP resent successfully to:", email);
+        setResendMessage("OTP has been resent successfully.");
+      } else {
+        console.error("Failed to resend OTP:", result.error);
+        setError(result.error || "Failed to resend OTP. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error in handleResendOtp:", err);
+      setError("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div className="otp-input-container">
       <h4>Enter OTP</h4>
@@ -83,6 +121,13 @@ const OTPInput = ({ email, onAuthComplete }) => {
         <button type="submit">Verify</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      {resendMessage && <p style={{ color: "green" }}>{resendMessage}</p>}
+      <p className="resend-otp">
+        Didn't receive OTP yet?{" "}
+        <button type="button" onClick={handleResendOtp} className="resend-otp-button">
+          Click Here.
+        </button>
+      </p>
     </div>
   );
 };
