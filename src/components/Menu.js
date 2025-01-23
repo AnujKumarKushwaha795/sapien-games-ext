@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/Menu.css";
-import OpenEmailInputButton from "../authentication/OpenEmailInputButton";
 
 const Menu = ({ isOpen, onClose }) => {
   return (
@@ -20,7 +19,6 @@ const Menu = ({ isOpen, onClose }) => {
           <button className="menu-item active">FAQ</button>
           <button className="menu-item">Tagger Profile</button>
           <button className="menu-item">Points</button>
-          <OpenEmailInputButton />
         </div>
       </div>
     </>

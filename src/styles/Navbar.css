@@ -6,12 +6,13 @@
   height: 80px;
   padding: 20px 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center the logo horizontally */
   align-items: center;
   background: rgba(32, 32, 32, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 8px rgb(50, 50, 50); /* Add shadow to the Navbar */
 }
 
 .logo {
@@ -23,7 +24,7 @@
 }
 
 .logo-image {
-  height: 35px;
+  height: 50px;
   width: auto;
   object-fit: contain;
 }

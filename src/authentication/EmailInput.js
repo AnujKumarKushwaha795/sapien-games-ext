@@ -16,6 +16,8 @@ const EmailInput = ({ onOtpSent }) => {
     }
 
     try {
+      console.log("Initiating OTP send for email:", email);
+      // authenticate
       const response = await fetch("https://auth.privy.io/api/v1/passwordless/init", {
         headers: {
           "accept": "application/json",
@@ -28,14 +30,23 @@ const EmailInput = ({ onOtpSent }) => {
         body: JSON.stringify({ email }),
       });
 
+      console.log("OTP Init Response:", response);
+      console.log("Response status:", response.status);
+
       const result = await response.json();
+      console.log("OTP Init Result:", result);
 
       if (result.success) {
+        console.log("OTP sent successfully to:", email);
+        console.log("Calling onOtpSent callback...");
         onOtpSent(email);
+        console.log("onOtpSent callback completed");
       } else {
+        console.error("Failed to send OTP:", result.error);
         setError(result.error || "Failed to send OTP. Please try again.");
       }
     } catch (err) {
+      console.error("Error in handleSubmit:", err);
       setError("An error occurred. Please try again.");
     }
   };
@@ -51,9 +62,9 @@ const EmailInput = ({ onOtpSent }) => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button type="submit">Continue</button>
+        <button type="submit">Send OTP</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
