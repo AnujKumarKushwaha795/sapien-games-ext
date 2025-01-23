@@ -7,9 +7,11 @@ const OTPInput = ({ email, onAuthComplete }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Verifying OTP for email:", email);
     setError("");
 
     try {
+      console.log("Making API call to authenticate OTP");
       const response = await fetch("https://auth.privy.io/api/v1/passwordless/authenticate", {
         headers: {
           "accept": "application/json",
@@ -23,13 +25,17 @@ const OTPInput = ({ email, onAuthComplete }) => {
       });
 
       const result = await response.json();
+      console.log("Authentication API response:", result);
 
-      if (result.success) {
-        onAuthComplete(result.token);
+      if (result.token && result.user) {
+        console.log("OTP verification successful");
+        onAuthComplete(JSON.stringify(result));
       } else {
-        setError(result.error || "Invalid OTP. Please try again.");
+        console.log("OTP verification failed - Invalid response structure:", result);
+        setError("Invalid OTP. Please try again.");
       }
     } catch (err) {
+      console.error("Authentication API call failed:", err);
       setError("An error occurred. Please try again.");
     }
   };

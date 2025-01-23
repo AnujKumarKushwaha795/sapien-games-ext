@@ -39,6 +39,7 @@ const Dashboard = () => {
 
     initializeDashboard();
   }, []);
+  
 
   // Helper function to safely fetch and parse data
   const fetchWithFallback = async (apiCall) => {
@@ -58,11 +59,72 @@ const Dashboard = () => {
     }
   };
 
+  async function callSapienGraphQL() {
+    try {
+        // First get the auth token from storage
+        const token = await new Promise((resolve, reject) => {
+            chrome.storage.local.get(['authToken'], function(result) {
+                if (chrome.runtime.lastError) {
+                    reject(new Error('Failed to get auth token: ' + chrome.runtime.lastError.message));
+                    return;
+                }
+                if (!result.authToken) {
+                    reject(new Error('Auth token not found in storage'));
+                    return;
+                }
+                resolve(result.authToken);
+            });
+        });
+        console.log('Auth token retrieved from storage');
+        token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsOFM5aEMweTdicDl6djRqMTZsdmVQdC0xX0VQR3pZNUZ5VkoxMHhEZm8ifQ.eyJzaWQiOiJjbTY3bGJzZ2owNXo1NzNwb3FyOGlzbGpyIiwiaXNzIjoicHJpdnkuaW8iLCJpYXQiOjE3Mzc2MzkyNjcsImF1ZCI6ImNtMDVub3R3ZTA0aTl0a2Fxcm8wM29iZmoiLCJzdWIiOiJkaWQ6cHJpdnk6Y201dzYwMnMxMDNkamx5d3g1dm83Mzk4eiIsImV4cCI6MTczNzY0Mjg2N30.9rIwW5faL1cpmiiQsA6U8wCH3W7NtYlmOVNmDwOfqc4eUK95Hs9DqjhkCA3ud_tFP6r_LAzbR_eeq8lAbsjx5g";
+
+        // Call the native sapienGraphQL function
+        const response = await new Promise((resolve, reject) => {
+            chrome.wootz.sapienGraphQL(token, (result) => {
+                if (chrome.runtime.lastError) {
+                    reject(new Error(chrome.runtime.lastError.message));
+                    return;
+                }
+                resolve(result);
+            });
+        });
+
+        console.log('GraphQL response:', response);
+        
+        if (response.success) {
+            // Parse the response data
+            const data = JSON.parse(response.data);
+            return data;
+        } else {
+            throw new Error(`Request failed with status ${response.statusCode}`);
+        }
+
+    } catch (error) {
+        console.error('Error in callSapienGraphQL:', error);
+        throw error;
+    }
+};
+
+
   const handleTaskClick = async (taskType) => { 
     if (taskType === 'vehicle-positioning') {
       try {
-          // TODO: Remove this once we have the actual API call
+        // Usage example:
+        try {
+          const data = await callSapienGraphQL();
+          console.log('Sapien data:', data);
+        } catch (error) {
+          console.error('Failed to fetch Sapien data:', error);
+        }          
+
+
+
+
+
+
+
           
+
 
 
         // First call sapienGame API
@@ -79,33 +141,34 @@ const Dashboard = () => {
         // console.log('Anuj: Response from sapienGame:', gameResponse);
 
         // Then call sapienMonitoring API
-        const monitoringResponse = await new Promise((resolve, reject) => {
-          chrome.wootz.sapienMonitoring((result) => {
-            console.log('Type of monitoring response:', typeof result);
-            // console.log('Raw monitoring response:', result);            
-            if (chrome.runtime.lastError) {
-              reject(chrome.runtime.lastError);
-            } else {
-              resolve(result);
-            }
-          });
-        });
+        // const monitoringResponse = await new Promise((resolve, reject) => {
+        //   chrome.wootz.sapienMonitoring((result) => {
+        //     console.log('Type of monitoring response:', typeof result);
+        //     // console.log('Raw monitoring response:', result);            
+        //     if (chrome.runtime.lastError) {
+        //       reject(chrome.runtime.lastError);
+        //     } else {
+        //       resolve(result);
+        //     }
+        //   });
+        // });
+
         // console.log('Payload from sapienMonitoring:', JSON.stringify(monitoringResponse, null, 2));
 
         // Clean and validate the game response data
-        let taggingData;
-        if (typeof gameResponse === 'string') {
-          try {
-            taggingData = JSON.parse(gameResponse);
-          } catch (parseError) {
-            console.error('JSON Parse Error:', parseError);
-            throw new Error('Invalid JSON string response');
-          }
-        } else if (gameResponse && typeof gameResponse === 'object') {
-          taggingData = gameResponse.data || gameResponse;
-        } else {
-          throw new Error('Invalid response format');
-        }
+        // let taggingData;
+        // if (typeof gameResponse === 'string') {
+        //   try {
+        //     taggingData = JSON.parse(gameResponse);
+        //   } catch (parseError) {
+        //     console.error('JSON Parse Error:', parseError);
+        //     throw new Error('Invalid JSON string response');
+        //   }
+        // } else if (gameResponse && typeof gameResponse === 'object') {
+        //   taggingData = gameResponse.data || gameResponse;
+        // } else {
+        //   throw new Error('Invalid response format');
+        // }
 
         // Validate the parsed data
         // if (!taggingData) {
