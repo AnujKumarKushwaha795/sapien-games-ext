@@ -59,7 +59,7 @@ const Dashboard = () => {
   async function callSapienGraphQL() {
     try {
         // First get the auth token from storage
-        const token = await new Promise((resolve, reject) => {
+        let token = await new Promise((resolve, reject) => {
             chrome.storage.local.get(['authToken'], function(result) {
                 if (chrome.runtime.lastError) {
                     reject(new Error('Failed to get auth token: ' + chrome.runtime.lastError.message));
@@ -73,7 +73,7 @@ const Dashboard = () => {
             });
         });
         console.log('Auth token retrieved from storage');
-        token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsOFM5aEMweTdicDl6djRqMTZsdmVQdC0xX0VQR3pZNUZ5VkoxMHhEZm8ifQ.eyJzaWQiOiJjbTY3bGJzZ2owNXo1NzNwb3FyOGlzbGpyIiwiaXNzIjoicHJpdnkuaW8iLCJpYXQiOjE3Mzc2MzkyNjcsImF1ZCI6ImNtMDVub3R3ZTA0aTl0a2Fxcm8wM29iZmoiLCJzdWIiOiJkaWQ6cHJpdnk6Y201dzYwMnMxMDNkamx5d3g1dm83Mzk4eiIsImV4cCI6MTczNzY0Mjg2N30.9rIwW5faL1cpmiiQsA6U8wCH3W7NtYlmOVNmDwOfqc4eUK95Hs9DqjhkCA3ud_tFP6r_LAzbR_eeq8lAbsjx5g";
+        token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsOFM5aEMweTdicDl6djRqMTZsdmVQdC0xX0VQR3pZNUZ5VkoxMHhEZm8ifQ.eyJzaWQiOiJjbTZhaHY4bzQwMXoyMjJ1cGozNGRlZjhhIiwiaXNzIjoicHJpdnkuaW8iLCJpYXQiOjE3Mzc3MDY5NzcsImF1ZCI6ImNtMDVub3R3ZTA0aTl0a2Fxcm8wM29iZmoiLCJzdWIiOiJkaWQ6cHJpdnk6Y202N2xydGtnMDEwNzI4NGJkczVnNGp0YSIsImV4cCI6MTczNzcxMDU3N30.S6c_PbZnOvxszf2Xp6Ixgb-lWNvujZsvYeCS9HVtIP0dUt9uUkOerEwdYTl2QWuyRbJYuH90rZSxaj-sPSe6Xw";
 
         // Call the native sapienGraphQL function
         const response = await new Promise((resolve, reject) => {
@@ -109,20 +109,11 @@ const Dashboard = () => {
         // Usage example:
         try {
           const data = await callSapienGraphQL();
-          console.log('Sapien data:', data);
+          console.log("Sapien data:", JSON.stringify(data, null, 2));
+          navigate('/vehicle-positioning', { state: { sapienData: data } }); // Navigate to the new page
         } catch (error) {
           console.error('Failed to fetch Sapien data:', error);
         }          
-
-
-
-
-
-
-
-          
-
-
 
         // First call sapienGame API
         // const gameResponse = await new Promise((resolve, reject) => {
@@ -251,7 +242,7 @@ const Dashboard = () => {
             className="connect-wallet-button"
           >
             <img src={wootzapp_icon} alt="Connect to Wallet" className="wallet-icon" />
-            Connect to Wallet
+            Connect Wallet
           </button>
         </div>
       </header>

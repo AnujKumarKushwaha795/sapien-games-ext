@@ -40,7 +40,7 @@ const Hero = () => {
             Play Now!
           </button>
         ) : (
-          <button className="cta-button orange-button" onClick={handleSignIn}>
+          <button className="cta-button orange-button" onClick={handlePlayNow}>
             Sign In
           </button>
         )}

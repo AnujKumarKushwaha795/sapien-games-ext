@@ -8,6 +8,7 @@ import Instructions from './components/Instructions';
 import UploadFile from './components/UploadFile';
 import VehicleTagging from './components/VehicleTagging';
 import AuthenticationPage from './authentication/AuthenticationPage';
+import VehiclePositioning from './components/VehiclePositioning';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/upload" element={<UploadFile />} />
           <Route path="/vehicle-tagging" element={<VehicleTagging />} />
           <Route path="/signin" element={<AuthenticationPage />} />
+          <Route path="/vehicle-positioning" element={<VehiclePositioning />} />
           {/* Catch all route - redirect to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

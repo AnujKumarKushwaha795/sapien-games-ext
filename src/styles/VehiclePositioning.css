@@ -1,0 +1,90 @@
+.vehicle-positioning-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 20px;
+}
+
+.vehicle-display {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  background-color: #242424;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.options-container {
+  width: 100%;
+  max-width: 800px;
+  background-color: #242424;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.option-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.option-button:hover {
+  background-color: #444;
+}
+
+.option-button.selected {
+  background-color: #0066cc;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #666;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: #777;
+}
