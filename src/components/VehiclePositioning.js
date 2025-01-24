@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/VehiclePositioning.css';
 import wootzapp_icon from '../assets/wootzapp.png';
+import multiplierIcon from '../assets/multiplier.png';
+import dollarIcon from '../assets/dollar.png';
+import pointsIcon from '../assets/points.png';
 
 const VehiclePositioning = () => {
   const location = useLocation();
@@ -133,8 +136,19 @@ const VehiclePositioning = () => {
           ⟪
         </button>
         <div className="vp-header-right">
-          <div className="vp-balance">
-            <span>$0.16 USDC</span>
+          <div className="vp-stats">
+            <div className="vp-stat-item">
+              <img src={multiplierIcon} alt="Multiplier" className="vp-stat-icon" />
+              <span>1.00X</span>
+            </div>
+            <div className="vp-stat-item">
+              <img src={dollarIcon} alt="Dollar" className="vp-stat-icon" />
+              <span>0</span>
+            </div>
+            <div className="vp-stat-item">
+              <img src={pointsIcon} alt="Points" className="vp-stat-icon" />
+              <span>101</span>
+            </div>
           </div>
           <button className="vp-wallet-button">
             <img src={wootzapp_icon} alt="Connect to Wallet" className="vp-wallet-icon" />
