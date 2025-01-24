@@ -73,7 +73,7 @@ const Dashboard = () => {
             });
         });
         console.log('Auth token retrieved from storage');
-        token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsOFM5aEMweTdicDl6djRqMTZsdmVQdC0xX0VQR3pZNUZ5VkoxMHhEZm8ifQ.eyJzaWQiOiJjbTZhaHY4bzQwMXoyMjJ1cGozNGRlZjhhIiwiaXNzIjoicHJpdnkuaW8iLCJpYXQiOjE3Mzc3MDY5NzcsImF1ZCI6ImNtMDVub3R3ZTA0aTl0a2Fxcm8wM29iZmoiLCJzdWIiOiJkaWQ6cHJpdnk6Y202N2xydGtnMDEwNzI4NGJkczVnNGp0YSIsImV4cCI6MTczNzcxMDU3N30.S6c_PbZnOvxszf2Xp6Ixgb-lWNvujZsvYeCS9HVtIP0dUt9uUkOerEwdYTl2QWuyRbJYuH90rZSxaj-sPSe6Xw";
+        token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsOFM5aEMweTdicDl6djRqMTZsdmVQdC0xX0VQR3pZNUZ5VkoxMHhEZm8ifQ.eyJzaWQiOiJjbTZhdjV4bGwwMWI4MTA5Ynp3bXpwdnJlIiwiaXNzIjoicHJpdnkuaW8iLCJpYXQiOjE3Mzc3NDA0NDYsImF1ZCI6ImNtMDVub3R3ZTA0aTl0a2Fxcm8wM29iZmoiLCJzdWIiOiJkaWQ6cHJpdnk6Y202N2xydGtnMDEwNzI4NGJkczVnNGp0YSIsImV4cCI6MTczNzc0NDA0Nn0.tKyggH-vJh3v1ja2Tk5-5ZK9a3HbKAbw3AplUY8EH_OXeIavmAgStcuNXk9lNosg9mp9rAACd7RktIG4azTiBg";
 
         // Call the native sapienGraphQL function
         const response = await new Promise((resolve, reject) => {

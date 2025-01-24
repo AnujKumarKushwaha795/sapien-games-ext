@@ -8,7 +8,8 @@
     "https://*.sapien.io/*",
     "https://pulse.walletconnect.com/*",
     "https://explorer-api.walletconnect.com/*",
-    "https://api2.amplitude.com/*"
+    "https://api2.amplitude.com/*",
+    "https://*.amazonaws.com/*"
   ],
   "permissions": [
     "activeTab",
@@ -18,7 +19,11 @@
     "webRequestBlocking"
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: blob: filesystem: chrome-extension:; media-src 'self' blob: filesystem: chrome-extension:; connect-src *;"
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: blob: filesystem: chrome-extension: https://*.amazonaws.com; connect-src *; media-src 'self' blob: filesystem: chrome-extension:; connect-src *;"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
   },
   "icons": {
     "16": "icons/icon.png",

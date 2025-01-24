@@ -1,42 +1,153 @@
-.vehicle-positioning-container {
+.vp-page {
+  min-height: 100vh;
+  background-color: #505050;
+  color: white;
+}
+
+.vp-page::before {
+  content: "";
+  position: fixed;
+  top: 10px;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  background: url('../assets/icon.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.35;
+  z-index: -1;
+}
+
+.vp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #242424;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 48px;
+}
+
+.vp-back-button {
+  background: none;
+  border: none;
+  color: #ff7033;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.vp-back-button:hover {
+  opacity: 0.8;
+}
+
+.vp-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 15px;
+}
+
+.vp-balance {
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.vp-wallet-button {
+  background: linear-gradient(45deg, #ff7033, #ffa041);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(255, 112, 51, 0.3);
+}
+
+.vp-wallet-button:hover {
+  opacity: 0.9;
+}
+
+.vp-wallet-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.vp-content {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+}
+
+.vp-options-title {
+  text-align: center;
+  color: rgb(255, 180, 130);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.vp-card {
+  width: 100%;
+  max-width: 900px;
+  background-color: #242424;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ff7033;
+}
+
+.vp-image-card {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  background-color: #1a1a1a;
-  color: white;
-  padding: 20px;
+  overflow: hidden;
+  height: 350px;
 }
 
-.vehicle-display {
+.vp-vehicle-image {
   width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
-  background-color: #242424;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.vehicle-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  height: 100%;
   object-fit: contain;
+  border-radius: 8px;
 }
 
-.options-container {
+.vp-image-placeholder {
   width: 100%;
-  max-width: 800px;
-  background-color: #242424;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  border-radius: 8px;
+  color: #666;
+  font-size: 1.2rem;
 }
 
-h2 {
+.vp-error-message {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff6b6b;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.vp-options-card h2 {
   text-align: center;
   color: white;
   margin-bottom: 20px;
@@ -44,15 +155,18 @@ h2 {
   font-weight: normal;
 }
 
-.options-list {
-  display: flex;
-  flex-direction: column;
+.vp-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.option-button {
-  width: 100%;
+.vp-options-grid-second {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.vp-option-button {
   padding: 15px;
   background-color: #333;
   border: none;
@@ -64,27 +178,37 @@ h2 {
   text-align: center;
 }
 
-.option-button:hover {
+.vp-option-button:hover:not(:disabled) {
   background-color: #444;
 }
 
-.option-button.selected {
+.vp-option-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vp-option-button.selected {
   background-color: #0066cc;
 }
 
-.submit-button {
+.vp-submit-button {
   width: 100%;
   padding: 15px;
-  background-color: #666;
+  background: linear-gradient(45deg, #ff7033, #ffa041);
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   color: white;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: opacity 0.3s ease;
   margin-top: 10px;
 }
 
-.submit-button:hover {
-  background-color: #777;
+.vp-submit-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.vp-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
