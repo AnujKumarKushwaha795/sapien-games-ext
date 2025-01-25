@@ -17,11 +17,15 @@
     "cookies",
     "webRequest",
     "webRequestBlocking",
-    "scripting"
+    "scripting",
+    "tabs"
   ],
   "content_scripts": [
     {
-      "matches": ["https://app.sapien.io/*", "https://auth.privy.io/*"],
+      "matches": [
+        "https://app.sapien.io/*", 
+        "https://auth.privy.io/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_start"
     }
@@ -29,7 +33,7 @@
   "web_accessible_resources": [
     {
       "resources": ["interceptor.js"],
-      "matches": ["https://app.sapien.io/*", "https://auth.privy.io/*", "chrome-extension://*/*"]
+      "matches": ["<all_urls>"]
     }
   ],
   "content_security_policy": {
