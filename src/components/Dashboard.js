@@ -63,20 +63,28 @@ const Dashboard = () => {
     try {
         // First get the auth token from storage
         let token = await new Promise((resolve, reject) => {
-            chrome.storage.local.get(['authToken'], function(result) {
+            chrome.storage.local.get(['authToken', 'authData'], function(result) {
                 if (chrome.runtime.lastError) {
                     reject(new Error('Failed to get auth token: ' + chrome.runtime.lastError.message));
                     return;
                 }
-                if (!result.authToken) {
-                    reject(new Error('Auth token not found in storage'));
+                
+                // Try to get token from direct storage first
+                if (result.authToken) {
+                    resolve(result.authToken);
                     return;
                 }
-                resolve(result.authToken);
+                
+                // If not found, try to get from authData
+                if (result.authData && result.authData.token) {
+                    resolve(result.authData.token);
+                    return;
+                }
+                
+                reject(new Error('Auth token not found in storage'));
             });
         });
         console.log('Auth token retrieved from storage');
-        token="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsOFM5aEMweTdicDl6djRqMTZsdmVQdC0xX0VQR3pZNUZ5VkoxMHhEZm8ifQ.eyJzaWQiOiJjbTZhdjV4bGwwMWI4MTA5Ynp3bXpwdnJlIiwiaXNzIjoicHJpdnkuaW8iLCJpYXQiOjE3Mzc3NDQwNDksImF1ZCI6ImNtMDVub3R3ZTA0aTl0a2Fxcm8wM29iZmoiLCJzdWIiOiJkaWQ6cHJpdnk6Y202N2xydGtnMDEwNzI4NGJkczVnNGp0YSIsImV4cCI6MTczNzc0NzY0OX0.xLM61OtuHHsMf2CWXqTF4j21cxngNq2tk5gpaUu8in2mM7D1IWDd6xCTFxcRK8T3YsV9sWyxg3-jxIHwiV8owQ";
 
         // Call the native sapienGraphQL function
         const response = await new Promise((resolve, reject) => {

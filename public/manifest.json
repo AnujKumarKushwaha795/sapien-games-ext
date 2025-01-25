@@ -16,10 +16,24 @@
     "storage",
     "cookies",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://app.sapien.io/*", "https://auth.privy.io/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["interceptor.js"],
+      "matches": ["https://app.sapien.io/*", "https://auth.privy.io/*", "chrome-extension://*/*"]
+    }
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: blob: filesystem: chrome-extension: https://*.amazonaws.com; connect-src *; media-src 'self' blob: filesystem: chrome-extension:; connect-src *;"
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: blob: filesystem: chrome-extension: https://*.amazonaws.com; connect-src *; frame-src https://app.sapien.io/ https://auth.privy.io/; frame-ancestors https://app.sapien.io/ https://auth.privy.io/"
   },
   "background": {
     "service_worker": "background.js",
