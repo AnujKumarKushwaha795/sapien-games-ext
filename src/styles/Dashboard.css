@@ -212,3 +212,17 @@
   height: 24px;
   object-fit: contain;
 }
+
+.back-button {
+  color: #ff7033;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}

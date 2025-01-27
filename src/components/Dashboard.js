@@ -213,6 +213,10 @@ const Dashboard = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate('/');
+  };
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -233,6 +237,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <header className="dashboard-header">
         <div className="dashboard-header-left">
+          <button className="back-button" onClick={handleBack}>⟪</button>
         </div>
         <div className="dashboard-header-right">
           <div className="dashboard-stats">
