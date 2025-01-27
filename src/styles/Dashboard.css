@@ -130,13 +130,51 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: white;
+  background: #505050c1;
+  position: relative;
+}
+
+.loading-container::before {
+  content: "";
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/icon.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.35;
+  z-index: -1;
 }
 
 .loading {
-  color: #ff8c42;
+  color: #ff7033;
   font-size: 18px;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.loading::before {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border: 3px solid #ff7033;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+}
+
+.loading::after {
+  display: none;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error-container {
