@@ -34,11 +34,13 @@ async function saveAuthData(data) {
     console.log('💾 Saving auth data:', {
         hasToken: !!data.token,
         hasPrivyToken: !!data.privyAccessToken,
-        hasRefreshToken: !!data.refreshToken
+        hasRefreshToken: !!data.refreshToken,
+        tokenLength: data.token?.length,
+        privyTokenLength: data.privyAccessToken?.length
     });
 
     return new Promise((resolve, reject) => {
-        chrome.storage.local.set({
+        const storageData = {
             authData: {
                 token: data.token,
                 privyAccessToken: data.privyAccessToken,
@@ -46,12 +48,36 @@ async function saveAuthData(data) {
                 user: data.user,
                 timestamp: Date.now()
             }
-        }, () => {
+        };
+
+        console.log('📦 Storing data structure:', {
+            hasAuthData: !!storageData.authData,
+            authDataContent: {
+                hasToken: !!storageData.authData.token,
+                hasPrivyToken: !!storageData.authData.privyAccessToken,
+                hasRefreshToken: !!storageData.authData.refreshToken,
+                hasUser: !!storageData.authData.user,
+                timestamp: storageData.authData.timestamp
+            }
+        });
+
+        chrome.storage.local.set(storageData, () => {
             if (chrome.runtime.lastError) {
                 console.error('❌ Error saving auth data:', chrome.runtime.lastError);
                 reject(chrome.runtime.lastError);
             } else {
                 console.log('✅ Auth data saved successfully');
+                // Verify the data was saved
+                chrome.storage.local.get(['authData'], (result) => {
+                    console.log('🔍 Verifying saved data:', {
+                        hasAuthData: !!result.authData,
+                        savedContent: {
+                            hasToken: !!result.authData?.token,
+                            hasPrivyToken: !!result.authData?.privyAccessToken,
+                            timestamp: result.authData?.timestamp
+                        }
+                    });
+                });
                 resolve();
             }
         });

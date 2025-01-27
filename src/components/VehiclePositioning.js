@@ -60,20 +60,45 @@ const VehiclePositioning = () => {
 
       // Get the auth token from storage
       const token = await new Promise((resolve, reject) => {
-        chrome.storage.local.get(['authToken'], function(result) {
+        chrome.storage.local.get(null, function(result) {
+          console.log('🔍 All storage data:', result);
+          
           if (chrome.runtime.lastError) {
+            console.error('❌ Storage error:', chrome.runtime.lastError);
             reject(new Error('Failed to get auth token: ' + chrome.runtime.lastError.message));
             return;
           }
-          if (!result.authToken) {
-            reject(new Error('Auth token not found in storage'));
+          
+          // Check authData structure
+          if (result.authData) {
+            console.log('📦 Auth data found:', {
+              hasToken: !!result.authData.token,
+              hasPrivyToken: !!result.authData.privyAccessToken,
+              timestamp: result.authData.timestamp
+            });
+          } else {
+            console.log('⚠️ No authData found in storage');
+          }
+          
+          // Try to get token from different possible locations
+          const token = result.authData?.token || 
+                       result.authData?.privyAccessToken || 
+                       result.authToken || 
+                       result.privyAccessToken;
+          
+          if (token) {
+            console.log('✅ Found valid token');
+            resolve(token);
             return;
           }
-          resolve(result.authToken);
+          
+          // If no token found
+          console.error('❌ No valid token found in storage');
+          reject(new Error('Auth token not found in storage'));
         });
       });
 
-      console.log('Auth token retrieved successfully');
+      console.log('🔑 Using auth token:', { tokenLength: token?.length });
 
       // Make the submission API call
       const response = await fetch('https://server.sapien.io/graphql', {
