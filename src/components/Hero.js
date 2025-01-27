@@ -7,7 +7,6 @@ const Hero = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isRedirecting, setIsRedirecting] = useState(false);
 
   // Check authentication status
   const checkAuthStatus = async () => {
@@ -49,12 +48,8 @@ const Hero = () => {
       console.log('✅ User is logged in, navigating to dashboard');
       navigate('/dashboard');
     } else {
-      console.log('🔑 User is not logged in, showing redirect spinner');
-      setIsRedirecting(true);
-      setTimeout(() => {
-        console.log('🌐 Redirecting to Sapien login');
-        window.location.href = 'https://app.sapien.io/';
-      }, 2000);
+      console.log('🔑 User is not logged in, redirecting to Sapien login');
+      window.location.href = 'https://app.sapien.io/';
     }
   };
 
@@ -70,12 +65,6 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      {isRedirecting && (
-        <div className="redirect-loading">
-          <div className="redirect-spinner"></div>
-          <div className="redirect-text">Redirecting to the Signin page</div>
-        </div>
-      )}
       <div className="content">
         <div className="hero-text">
           <h1 className="gradient-text">Play. Earn.<br/>Train AI.</h1>
@@ -95,10 +84,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-// This is the codebase, and this react app is for chrome-extension that I am making, so Solve or Implement my task/ aim/ goal.
-//   Here is the flow:
-//   At first the Hero page is opened in which there is a sigin button and will changed to PlayNow if user is logged in.
-//   The signin button should open @https://app.sapien.io  this website in the chrome-extension itself in which user login or signup is happening, and we have to intercept the authentication api to get all the response and save it, also we have to save the cookies so that it is not required to signin again.
-//   Now if the webpage authentication api is done, then the website should automatically close and it should redirect to the dashboard or our app (Dashboard.js) where the token is used to display image in vehicle postioning and play games.
-//   And if the user is already logged in then on clicking the Playnow button it should directly open the dashboard with the old token.

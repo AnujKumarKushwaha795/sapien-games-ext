@@ -9,7 +9,8 @@
     "https://pulse.walletconnect.com/*",
     "https://explorer-api.walletconnect.com/*",
     "https://api2.amplitude.com/*",
-    "https://*.amazonaws.com/*"
+    "https://*.amazonaws.com/*",
+    "https://app.sapien.io/*"
   ],
   "permissions": [
     "activeTab",
