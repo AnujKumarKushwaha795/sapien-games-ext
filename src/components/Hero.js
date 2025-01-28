@@ -73,7 +73,7 @@ const Hero = () => {
       {isRedirecting && (
         <div className="redirect-loading">
           <div className="redirect-spinner"></div>
-          <div className="redirect-text">Redirecting to the Signin page</div>
+          <div className="redirect-text">Redirecting to the Signin page...</div>
         </div>
       )}
       <div className="content">

@@ -135,91 +135,91 @@ if (window.location.href.includes('app.sapien.io')) {
     }
 }
 
-// Handle sign-in button click
-document.addEventListener('click', function(event) {
-    const signInButton = event.target.closest('[data-testid="sign-in-button"]');
-    if (signInButton) {
-        event.preventDefault();
-        console.log('🔑 Sign in button clicked');
-        window.location.href = 'https://app.sapien.io/';
-    }
-});
+// // Handle sign-in button click
+// document.addEventListener('click', function(event) {
+//     const signInButton = event.target.closest('[data-testid="sign-in-button"]');
+//     if (signInButton) {
+//         event.preventDefault();
+//         console.log('🔑 Sign in button clicked');
+//         window.location.href = 'https://app.sapien.io/';
+//     }
+// });
 
-// Function to show loading overlay
-function showLoadingOverlay() {
-    console.log('🔄 Showing loading overlay');
+// // Function to show loading overlay
+// function showLoadingOverlay() {
+//     console.log('🔄 Showing loading overlay');
     
-    // Create and inject styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .redirect-loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #505050c1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            z-index: 9999;
-        }
+//     // Create and inject styles
+//     const style = document.createElement('style');
+//     style.textContent = `
+//         .redirect-loading {
+//             position: fixed;
+//             top: 0;
+//             left: 0;
+//             width: 100%;
+//             height: 100%;
+//             background: #505050c1;
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: center;
+//             align-items: center;
+//             gap: 20px;
+//             z-index: 9999;
+//         }
 
-        .redirect-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid #ff7033;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spinner 0.8s linear infinite;
-        }
+//         .redirect-spinner {
+//             width: 40px;
+//             height: 40px;
+//             border: 3px solid #ff7033;
+//             border-top-color: transparent;
+//             border-radius: 50%;
+//             animation: spinner 0.8s linear infinite;
+//         }
 
-        .redirect-text {
-            color: #ff7033;
-            font-size: 18px;
-            font-weight: 500;
-        }
+//         .redirect-text {
+//             color: #ff7033;
+//             font-size: 18px;
+//             font-weight: 500;
+//         }
 
-        @keyframes spinner {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+//         @keyframes spinner {
+//             to {
+//                 transform: rotate(360deg);
+//             }
+//         }
 
-        body.loading {
-            visibility: hidden;
-        }
-    `;
-    document.head.appendChild(style);
+//         body.loading {
+//             visibility: hidden;
+//         }
+//     `;
+//     document.head.appendChild(style);
 
-    // Hide the body initially
-    document.body.classList.add('loading');
+//     // Hide the body initially
+//     document.body.classList.add('loading');
 
-    // Create loading overlay
-    const loadingOverlay = document.createElement('div');
-    loadingOverlay.className = 'redirect-loading';
-    loadingOverlay.innerHTML = `
-        <div class="redirect-spinner"></div>
-        <div class="redirect-text">Redirecting to the Signin page...</div>
-    `;
-    document.body.parentNode.insertBefore(loadingOverlay, document.body);
+//     // Create loading overlay
+//     const loadingOverlay = document.createElement('div');
+//     loadingOverlay.className = 'redirect-loading';
+//     loadingOverlay.innerHTML = `
+//         <div class="redirect-spinner"></div>
+//         <div class="redirect-text">Redirecting to the Signin page...</div>
+//     `;
+//     document.body.parentNode.insertBefore(loadingOverlay, document.body);
 
-    // Remove overlay after 5 seconds
-    setTimeout(() => {
-        console.log('✅ Removing loading overlay');
-        document.body.classList.remove('loading');
-        loadingOverlay.remove();
-    }, 5000);
-}
+//     // Remove overlay after 5 seconds
+//     setTimeout(() => {
+//         console.log('✅ Removing loading overlay');
+//         document.body.classList.remove('loading');
+//         loadingOverlay.remove();
+//     }, 5000);
+// }
 
-// Only run on app.sapien.io
-if (window.location.hostname === 'app.sapien.io') {
-    // Show loading overlay immediately
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', showLoadingOverlay);
-    } else {
-        showLoadingOverlay();
-    }
-} 
+// // Only run on app.sapien.io
+// if (window.location.hostname === 'app.sapien.io') {
+//     // Show loading overlay immediately
+//     if (document.readyState === 'loading') {
+//         document.addEventListener('DOMContentLoaded', showLoadingOverlay);
+//     } else {
+//         showLoadingOverlay();
+//     }
+// } 
