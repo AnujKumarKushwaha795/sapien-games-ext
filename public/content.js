@@ -135,15 +135,15 @@ if (window.location.href.includes('app.sapien.io')) {
     }
 }
 
-// // Handle sign-in button click
-// document.addEventListener('click', function(event) {
-//     const signInButton = event.target.closest('[data-testid="sign-in-button"]');
-//     if (signInButton) {
-//         event.preventDefault();
-//         console.log('🔑 Sign in button clicked');
-//         window.location.href = 'https://app.sapien.io/';
-//     }
-// });
+// Handle sign-in button click
+document.addEventListener('click', function(event) {
+    const signInButton = event.target.closest('[data-testid="sign-in-button"]');
+    if (signInButton) {
+        event.preventDefault();
+        console.log('🔑 Sign in button clicked');
+        window.location.href = 'https://app.sapien.io/';
+    }
+});
 
 // // Function to show loading overlay
 // function showLoadingOverlay() {
