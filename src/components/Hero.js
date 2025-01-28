@@ -7,6 +7,7 @@ const Hero = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   // Check authentication status
   const checkAuthStatus = async () => {
@@ -48,8 +49,12 @@ const Hero = () => {
       console.log('✅ User is logged in, navigating to dashboard');
       navigate('/dashboard');
     } else {
-      console.log('🔑 User is not logged in, redirecting to Sapien login');
-      window.location.href = 'https://app.sapien.io/';
+      console.log('🔑 User is not logged in, showing redirect spinner');
+      setIsRedirecting(true);
+      setTimeout(() => {
+        console.log('🌐 Redirecting to Sapien login');
+        window.location.href = 'https://app.sapien.io/';
+      }, 2000);
     }
   };
 
@@ -65,6 +70,12 @@ const Hero = () => {
 
   return (
     <div className="hero">
+      {isRedirecting && (
+        <div className="redirect-loading">
+          <div className="redirect-spinner"></div>
+          <div className="redirect-text">Redirecting to the Signin page</div>
+        </div>
+      )}
       <div className="content">
         <div className="hero-text">
           <h1 className="gradient-text">Play. Earn.<br/>Train AI.</h1>
